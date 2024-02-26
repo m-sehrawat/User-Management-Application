@@ -1,0 +1,29 @@
+{
+  "name": "user_management_app",
+  "version": "1.0.0",
+  "description": "Assignment",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "Jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-sehrawat/User-Management-Application.git"
+  },
+  "author": "Mohit Sehrawat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m-sehrawat/User-Management-Application/issues"
+  },
+  "homepage": "https://github.com/m-sehrawat/User-Management-Application#readme",
+  "dependencies": {
+    "parcel": "^2.11.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "process": "^0.11.10"
+  }
+}
