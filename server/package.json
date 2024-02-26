@@ -1,0 +1,23 @@
+{
+  "name": "user_management_app",
+  "version": "1.0.0",
+  "description": "Assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/m-sehrawat/User-Management-Application.git"
+  },
+  "author": "Mohit Sehrawat",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/m-sehrawat/User-Management-Application/issues"
+  },
+  "homepage": "https://github.com/m-sehrawat/User-Management-Application#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.2.0"
+  }
+}
