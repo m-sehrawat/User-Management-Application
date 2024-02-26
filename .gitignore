@@ -1,0 +1,19 @@
+# Node.js dependencies
+node_modules
+
+# Development environment
+.env
+
+# Build/Output
+build
+dist
+coverage
+
+# Logs and Temporary Files
+*.log
+npm-debug.log*
+
+# Miscellaneous
+.DS_Store
+.idea/
+.vscode/
