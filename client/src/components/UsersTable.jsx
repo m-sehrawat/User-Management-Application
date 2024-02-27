@@ -42,9 +42,28 @@ const UsersTable = () => {
     ]
 
     const [userData, setUserData] = useState([]);
+    const [inputValue, setInputValue] = useState('');
 
     const fetchUserData = () => {
         setUserData(data);
+    }
+
+    const handleSorting = ({ target: { value } }) => {
+        const sortedUserData = [...userData];
+        const resetData = [...userData];
+        if (value === 'increase') {
+            sortedUserData.sort((a, b) => a.username.localeCompare(b.username));
+        } else if (value === 'decrease') {
+            sortedUserData.sort((a, b) => b.username.localeCompare(a.username));
+        }
+        setUserData(sortedUserData);
+    }
+
+    const handleFiltering = () => {
+        console.log(inputValue);
+        const filteredData = userData.filter((item) => item.username === inputValue);
+        setUserData(filteredData);
+        setInputValue('');
     }
 
     useEffect(() => {
@@ -56,12 +75,12 @@ const UsersTable = () => {
             <Flex minWidth='max-content' alignItems='center' gap='15px' mb={'30px'}>
                 <Heading fontSize={'25px'}  >Users List</Heading>
                 <Spacer />
-                <Select w={'200px'} placeholder='Sorting'>
-                    <option>A-Z order</option>
-                    <option>Z-A order</option>
+                <Select onChange={handleSorting} w={'200px'} placeholder='Sorting'>
+                    <option value={'increase'}>A-Z order</option>
+                    <option value={'decrease'}>Z-A order</option>
                 </Select>
-                <Input w={'300'} placeholder="type username" />
-                <Button>Filter</Button>
+                <Input onChange={(e) => setInputValue(e.target.value)} value={inputValue} w={'300'} placeholder="username" />
+                <Button onClick={handleFiltering}>Filter</Button>
             </Flex>
             <hr />
 
