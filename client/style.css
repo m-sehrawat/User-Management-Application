@@ -1,10 +1,9 @@
 #input-form {
     border: 1px solid rgb(221, 221, 221);
-    max-width: 30vw;
+    max-width: 35vw;
     margin: 60px auto;
     padding: 20px;
     border-radius: 10px;
-
 }
 
 #table-container {
@@ -14,3 +13,29 @@
     padding: 30px;
     border-radius: 10px;
 }
+
+/* MEDIA QUERIES */
+@media screen and (max-width: 1024px) {
+    #input-form {
+        max-width: 50vw;
+    }
+    #table-container {
+        max-width: 90vw;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    #input-form {
+        max-width: 90vw;
+    }
+    #table-container {
+        max-width: 99vw;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    #input-form {
+        max-width: 95vw;
+    }
+}
+  

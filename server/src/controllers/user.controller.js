@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const User = require("../models/user.model");
 
-
 // GET
 const getRequest = () => async (req, res) => {
     try {
@@ -33,10 +32,8 @@ const deleteRequest = () => async (req, res) => {
     }
 };
 
-
 router.post("/", postRequest());
 router.get("/", getRequest());
 router.delete("/:id", deleteRequest());
-
 
 module.exports = router;

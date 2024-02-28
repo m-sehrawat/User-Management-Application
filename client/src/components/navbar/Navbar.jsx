@@ -1,10 +1,9 @@
 import { Box, Button, ButtonGroup, Flex, Heading, Spacer } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 
+
 const Navbar = () => {
-
     const navigate = useNavigate();
-
     return (
         <>
             <Flex minWidth='max-content' alignItems='center' gap='2' bg={'#f5f5f5'} p={'10px'}>

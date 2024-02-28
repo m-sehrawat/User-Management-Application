@@ -1,6 +1,6 @@
-import { VStack, Input, Button, useToast, Heading } from '@chakra-ui/react'
+import { VStack, Input, Button, useToast, Heading } from '@chakra-ui/react';
+import { isInputFormValid, setToast } from '../../utils/functions';
 import { useState } from 'react';
-import { isInputFormValid, setToast } from '../../utils/functions'
 import axios from 'axios';
 
 
@@ -33,7 +33,6 @@ const UserForm = () => {
         }
     }
 
-
     return (
         <>
             <div id="input-form">
@@ -44,7 +43,7 @@ const UserForm = () => {
                     <Input onInput={handleInputChange} value={form.description} name='description' type='text' placeholder='Description' />
                     <Input onInput={handleInputChange} value={form.role} name='role' type='text' placeholder='Role' />
                     <Input onInput={handleInputChange} value={form.city} name='city' type='text' placeholder='City' />
-                    <Button onClick={handleOnSubmit} w={'100%'} >Submit</Button>
+                    <Button onClick={handleOnSubmit} w={'100%'}>Submit</Button>
                 </VStack>
             </div>
         </>

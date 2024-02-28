@@ -5,12 +5,10 @@ export const formatDateAndTime = (timestamp) => {
     const year = dateObj.getFullYear();
     const hours = dateObj.getHours();
     const minutes = dateObj.getMinutes().toString().padStart(2, "0");
-
     // Format date as dd-mm-yyyy
     const formattedDate = `${day}-${month}-${year}`;
     // Format time as tt:ss AM/PM
     const formattedTime = `${hours > 12 ? hours - 12 : hours}:${minutes} ${hours >= 12 ? "PM" : "AM"}`;
-
     return `${formattedDate}, ${formattedTime}`;
 }
 
