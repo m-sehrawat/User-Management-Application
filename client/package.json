@@ -22,6 +22,7 @@
     "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
+    "axios": "^1.6.7",
     "framer-motion": "^11.0.6",
     "parcel": "^2.11.0",
     "react": "^18.2.0",
@@ -29,6 +30,7 @@
     "react-router-dom": "^6.22.1"
   },
   "devDependencies": {
+    "buffer": "^6.0.3",
     "process": "^0.11.10"
   }
 }

@@ -2,67 +2,41 @@ import { Button, Flex, Heading, Input, Select, Spacer } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td, TableContainer } from '@chakra-ui/react';
 import TableRow from "./TableRow";
+import axios from "axios";
 
 
 const UsersTable = () => {
 
-    const data = [
-        {
-            username: 'mohit',
-            email: 'mohit@gmail.com',
-            description: 'Hard working',
-            role: 'Web Developer',
-            city: 'Delhi',
-            regDate: '28-02-2024',
-        },
-        {
-            username: 'Deepak',
-            email: 'deepak@gmail.com',
-            description: 'Good working',
-            role: 'Software Engineer',
-            city: 'Bangalore',
-            regDate: '01-02-2024',
-        },
-        {
-            username: 'Sagar',
-            email: 'sagar@gmail.com',
-            description: 'Smart working',
-            role: 'Full stack Developer',
-            city: 'Noida',
-            regDate: '30-01-2024',
-        },
-        {
-            username: 'Ravi',
-            email: 'ravi@gmail.com',
-            description: 'Slow working',
-            role: 'Python Developer',
-            city: 'Jaipur',
-            regDate: '09-02-2024',
-        }
-    ]
-
     const [userData, setUserData] = useState([]);
     const [inputValue, setInputValue] = useState('');
 
-    const fetchUserData = () => {
-        setUserData(data);
+    const fetchUserData = async () => {
+        try {
+            const { data } = await axios.get("/users");
+            console.log('data:', data)
+            setUserData(data);
+        } catch (err) {
+            console.log(err);
+        }
     }
 
     const handleSorting = ({ target: { value } }) => {
         const sortedUserData = [...userData];
-        const resetData = [...userData];
-        if (value === 'increase') {
+        if (value === 'usernameAZ') {
             sortedUserData.sort((a, b) => a.username.localeCompare(b.username));
-        } else if (value === 'decrease') {
+        } else if (value === 'usernameZA') {
+            sortedUserData.sort((a, b) => b.username.localeCompare(a.username));
+        } else if (value === 'dateIncrease') {
+            sortedUserData.sort((a, b) => b.username.localeCompare(a.username));
+        } else if (value === 'dateDecrease') {
             sortedUserData.sort((a, b) => b.username.localeCompare(a.username));
         }
         setUserData(sortedUserData);
     }
 
     const handleFiltering = () => {
-        console.log(inputValue);
-        const filteredData = userData.filter((item) => item.username === inputValue);
-        setUserData(filteredData);
+        const filteredData = [...userData];
+        setUserData(filteredData.filter((item) => item.username.toLowerCase() === inputValue.toLowerCase()));
         setInputValue('');
     }
 
@@ -73,11 +47,14 @@ const UsersTable = () => {
     return (
         <div id="table-container">
             <Flex minWidth='max-content' alignItems='center' gap='15px' mb={'30px'}>
-                <Heading fontSize={'25px'}  >Users List</Heading>
+                <Heading fontSize={'25px'}>Users List</Heading>
                 <Spacer />
+                <Button onClick={fetchUserData}>Reset</Button>
                 <Select onChange={handleSorting} w={'200px'} placeholder='Sorting'>
-                    <option value={'increase'}>A-Z order</option>
-                    <option value={'decrease'}>Z-A order</option>
+                    <option value={'usernameAZ'}>Username A-Z</option>
+                    <option value={'usernameZA'}>Username Z-A</option>
+                    <option value={'dateIncrease'}>Date Increase</option>
+                    <option value={'dateDecrease'}>Date Decrease</option>
                 </Select>
                 <Input onChange={(e) => setInputValue(e.target.value)} value={inputValue} w={'300'} placeholder="username" />
                 <Button onClick={handleFiltering}>Filter</Button>
@@ -98,8 +75,8 @@ const UsersTable = () => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {userData.map((item, i) => (
-                            <TableRow key={i} data={item} />
+                        {userData.map((item) => (
+                            <TableRow key={item._id} data={item} />
                         ))}
                     </Tbody>
                 </Table>

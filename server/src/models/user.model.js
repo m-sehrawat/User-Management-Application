@@ -5,8 +5,7 @@ const userSchema = new Schema({
     email: { type: String, required: true },
     description: { type: String, required: true },
     role: { type: String, required: true },
-    city: { type: String, required: true },
-    regDate: { type: String, required: true },
+    city: { type: String, required: true }
 }, {
     versionKey: false,
     timestamps: true

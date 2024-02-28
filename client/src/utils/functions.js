@@ -1,6 +1,17 @@
-export const getCurrentDate = () => {
-    const date = new Date();
-    return `${date.getDate()}-${date.getMonth() + 1}-${date.getFullYear()}`
+export const formatDateAndTime = (timestamp) => {
+    const dateObj = new Date(timestamp);
+    const day = dateObj.getDate().toString().padStart(2, "0");
+    const month = (dateObj.getMonth() + 1).toString().padStart(2, "0");
+    const year = dateObj.getFullYear();
+    const hours = dateObj.getHours();
+    const minutes = dateObj.getMinutes().toString().padStart(2, "0");
+
+    // Format date as dd-mm-yyyy
+    const formattedDate = `${day}-${month}-${year}`;
+    // Format time as tt:ss AM/PM
+    const formattedTime = `${hours > 12 ? hours - 12 : hours}:${minutes} ${hours >= 12 ? "PM" : "AM"}`;
+
+    return `${formattedDate}, ${formattedTime}`;
 }
 
 export const isInputFormValid = (payload) => {

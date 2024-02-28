@@ -1,6 +1,6 @@
 import { VStack, Input, Button, useToast, Heading } from '@chakra-ui/react'
 import { useState } from 'react';
-import { getCurrentDate, isInputFormValid, setToast } from '../../utils/functions'
+import { isInputFormValid, setToast } from '../../utils/functions'
 
 
 const UserForm = () => {
@@ -10,8 +10,7 @@ const UserForm = () => {
         email: '',
         description: '',
         role: '',
-        city: '',
-        regDate: getCurrentDate(),
+        city: ''
     }
     const [form, setForm] = useState(payload);
     const toast = useToast();
