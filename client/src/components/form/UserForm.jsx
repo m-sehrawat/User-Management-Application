@@ -1,30 +1,34 @@
 import { VStack, Input, Button, useToast, Heading } from '@chakra-ui/react'
 import { useState } from 'react';
 import { isInputFormValid, setToast } from '../../utils/functions'
+import axios from 'axios';
 
 
 const UserForm = () => {
 
-    const payload = {
-        username: '',
-        email: '',
-        description: '',
-        role: '',
-        city: ''
-    }
+    const payload = { username: '', email: '', description: '', role: '', city: '' };
     const [form, setForm] = useState(payload);
     const toast = useToast();
+
+    const postUserData = async (payload) => {
+        try {
+            const { data: { username } } = await axios.post("/users", payload);
+            return username;
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     const handleInputChange = ({ target: { name, value } }) => {
         setForm({ ...form, [name]: value });
     }
 
-    const handleOnSubmit = () => {
+    const handleOnSubmit = async () => {
         if (!isInputFormValid(form)) {
             setToast(toast, 'Empty Values', 'error');
         } else {
-            setToast(toast, 'User Data Added', 'success');
-            console.log(form);
+            const username = await postUserData(form);
+            setToast(toast, `${username}'s Data Added`, 'success');
             setForm(payload);
         }
     }
