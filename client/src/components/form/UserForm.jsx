@@ -1,6 +1,6 @@
 import { VStack, Input, Button, useToast, Heading } from '@chakra-ui/react'
 import { useState } from 'react';
-import { getCurrentDate, isInputFormValid, setToast } from '../utils/functions'
+import { getCurrentDate, isInputFormValid, setToast } from '../../utils/functions'
 
 
 const UserForm = () => {

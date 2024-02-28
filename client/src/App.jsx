@@ -1,10 +1,10 @@
-import UserForm from "./components/UserForm";
-import UsersTable from "./components/UsersTable";
+import UserForm from "./components/form/UserForm";
+import UsersTable from "./components/table/UsersTable";
 
 const App = () => {
     return (
         <>
-            {/* <UserForm /> */}
+            <UserForm />
             <UsersTable />
         </>
     )
