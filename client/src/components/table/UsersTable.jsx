@@ -1,4 +1,4 @@
-import { Button, Flex, Heading, Input, Select, Spacer, Table, Thead, Tbody, Tr, Th, TableContainer } from "@chakra-ui/react";
+import { Button, Flex, Heading, Input, Select, Spacer, Table, Thead, Tbody, Tr, Th, TableContainer, Spinner, Center } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import TableRow from "./TableRow";
 import axios from "axios";
@@ -8,11 +8,14 @@ const UsersTable = () => {
 
     const [userData, setUserData] = useState([]);
     const [inputValue, setInputValue] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
 
     const fetchUserData = async () => {
         try {
+            setIsLoading(true);
             const { data } = await axios.get("/users");
             setUserData(data);
+            setIsLoading(false);
         } catch (err) {
             console.log(err);
         }
@@ -60,24 +63,31 @@ const UsersTable = () => {
                 <Button onClick={handleFiltering}>Filter</Button>
             </Flex>
             <hr />
-            <TableContainer>
-                <Table size='sm'>
-                    <Thead>
-                        <Tr>
-                            <Th>Username</Th>
-                            <Th>Email</Th>
-                            <Th>Description</Th>
-                            <Th>More Details</Th>
-                            <Th>Delete</Th>
-                        </Tr>
-                    </Thead>
-                    <Tbody>
-                        {userData.map((item) => (
-                            <TableRow key={item._id} data={item} fetchUserData={fetchUserData} />
-                        ))}
-                    </Tbody>
-                </Table>
-            </TableContainer>
+
+            {isLoading ? (
+                <Center h={'200px'} w={'100%'}>
+                    <Spinner thickness='4px' speed='0.65s' emptyColor='gray.200' color='blue.500' size='xl' />
+                </Center>
+            ) : (
+                <TableContainer>
+                    <Table size='sm'>
+                        <Thead>
+                            <Tr>
+                                <Th>Username</Th>
+                                <Th>Email</Th>
+                                <Th>Description</Th>
+                                <Th>More Details</Th>
+                                <Th>Delete</Th>
+                            </Tr>
+                        </Thead>
+                        <Tbody>
+                            {userData.map((item) => (
+                                <TableRow key={item._id} data={item} fetchUserData={fetchUserData} />
+                            ))}
+                        </Tbody>
+                    </Table>
+                </TableContainer>
+            )}
         </div>
     )
 };
