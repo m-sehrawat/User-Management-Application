@@ -12,8 +12,10 @@ const UsersTable = () => {
 
     const fetchUserData = async () => {
         try {
-            const { data } = await axios.get("/users");
-            console.log('data:', data)
+            const res = await axios.get("/users");
+            const { data } = res
+            console.log('res:', res)
+            // console.log('data:', data)
             setUserData(data);
         } catch (err) {
             console.log(err);
@@ -27,16 +29,18 @@ const UsersTable = () => {
         } else if (value === 'usernameZA') {
             sortedUserData.sort((a, b) => b.username.localeCompare(a.username));
         } else if (value === 'dateIncrease') {
-            sortedUserData.sort((a, b) => b.username.localeCompare(a.username));
+            sortedUserData.sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
         } else if (value === 'dateDecrease') {
-            sortedUserData.sort((a, b) => b.username.localeCompare(a.username));
+            sortedUserData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
         }
         setUserData(sortedUserData);
     }
 
     const handleFiltering = () => {
         const filteredData = [...userData];
-        setUserData(filteredData.filter((item) => item.username.toLowerCase() === inputValue.toLowerCase()));
+        setUserData(filteredData.filter((item) => {
+            return item.username.toLowerCase().includes(inputValue.toLowerCase());
+        }));
         setInputValue('');
     }
 
@@ -76,7 +80,7 @@ const UsersTable = () => {
                     </Thead>
                     <Tbody>
                         {userData.map((item) => (
-                            <TableRow key={item._id} data={item} />
+                            <TableRow key={item._id} data={item} fetchUserData={fetchUserData} />
                         ))}
                     </Tbody>
                 </Table>
