@@ -35,7 +35,7 @@ const UserForm = () => {
         <>
             <div id="input-form">
                 <VStack gap={'10px'} >
-                    <Heading>User Input Form</Heading>
+                    <Heading size={'lg'} mb={'10px'} >User Input Form</Heading>
                     <Input onInput={handleInputChange} value={form.username} name='username' type='text' placeholder='Username' />
                     <Input onInput={handleInputChange} value={form.email} name='email' type='email' placeholder='Email' />
                     <Input onInput={handleInputChange} value={form.description} name='description' type='text' placeholder='Description' />

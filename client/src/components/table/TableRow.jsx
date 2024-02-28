@@ -1,10 +1,12 @@
 import { Tr, Td, Button, useDisclosure } from '@chakra-ui/react';
 import UserModal from './UserModal';
+import { useNavigate } from 'react-router-dom';
 
 
 const TableRow = ({ data }) => {
 
     const { isOpen, onOpen, onClose } = useDisclosure()
+    const navigate = useNavigate();
 
     return (
         <>
@@ -13,6 +15,7 @@ const TableRow = ({ data }) => {
                 <Td>{data.email}</Td>
                 <Td>{data.description}</Td>
                 <Td>
+                    {/* <Button onClick={() => navigate('/users/client')} size='xs' variant='outline' colorScheme="teal">More Details</Button> */}
                     <Button onClick={onOpen} size='xs' variant='outline' colorScheme="teal">More Details</Button>
                 </Td>
                 <Td>
