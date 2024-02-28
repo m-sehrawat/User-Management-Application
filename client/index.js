@@ -5,7 +5,8 @@ import { BrowserRouter } from 'react-router-dom';
 import Router from './src/routes/Router';
 import axios from 'axios';
 
-axios.defaults.baseURL = "http://localhost:8080";
+// axios.defaults.baseURL = "http://localhost:8080";
+axios.defaults.baseURL = "https://user-management-application-y18y.onrender.com";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <ChakraProvider>
